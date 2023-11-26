@@ -36,7 +36,7 @@ run:
       value: f7b4489992e3ecc9f8f009a892942389
     - name: SECRET_KEY_BASE
       value: 310e97425d11656100d39c8dce1c04df
-  command: export && RAILS_ENV=production bundle exec rails server --binding=0.0.0.0
+  command: RAILS_ENV=production bundle exec rails server --binding=0.0.0.0
   network:
     port: 3000
 
