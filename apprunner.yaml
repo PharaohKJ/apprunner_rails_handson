@@ -18,8 +18,9 @@ build:
     build:
       - sudo yum install -y libyaml-devel postgresql-devel
       - bundle install 
-      - RAILS_ENV=production bundle exec rails db:migrate 
-      - RAILS_ENV=production bundle exec rails assets:precompile
+      - export
+      - RAILS_ENV=production SECRET_KEY_BASE=f7b4489992e3ecc9f8f009a892942389 bundle exec rails db:migrate 
+      - RAILS_ENV=production SECRET_KEY_BASE=f7b4489992e3ecc9f8f009a892942389 bundle exec rails assets:precompile
 run: 
   runtime-version: 3.1.4
   env:
@@ -35,7 +36,7 @@ run:
       value: f7b4489992e3ecc9f8f009a892942389
     - name: SECRET_KEY_BASE
       value: 310e97425d11656100d39c8dce1c04df
-  command: AILS_ENV=production bundle exec rails server --binding=0.0.0.0
+  command: export && RAILS_ENV=production bundle exec rails server --binding=0.0.0.0
   network:
     port: 3000
 
