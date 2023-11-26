@@ -1,12 +1,27 @@
 version: 1.0
 runtime: ruby31
 build:
+  env:
+    - name: RAILS_ENV
+      value: production
+    - name: RACK_ENV
+      value: production
+    - name: RAILS_LOG_TO_STDOUT
+      value: enabled
+    - name: RAILS_SERVE_STATIC_FILES
+      value: enabled
+    - name: RAILS_MASTER_KEY
+      value: f7b4489992e3ecc9f8f009a892942389
+    - name: SECRET_KEY_BASE
+      value: 310e97425d11656100d39c8dce1c04df
   commands:
     build:
       - sudo yum install -y libyaml-devel postgresql-devel
       - bundle install 
       - RAILS_ENV=production bundle exec rails db:migrate 
-      - AILS_ENV=production bundle exec rails assets:precompile
+      - RAILS_ENV=production bundle exec rails assets:precompile
+run: 
+  runtime-version: 3.1.4
   env:
     - name: RAILS_ENV
       value: production
@@ -20,21 +35,7 @@ build:
       value: f7b4489992e3ecc9f8f009a892942389
     - name: SECRET_KEY_BASE
       value: 310e97425d11656100d39c8dce1c04df
-run: 
-  runtime-version: 3.1.4
   command: AILS_ENV=production bundle exec rails server --binding=0.0.0.0
   network:
     port: 3000
-  env:
-    - name: RAILS_ENV
-      value: production
-    - name: RACK_ENV
-      value: production
-    - name: RAILS_LOG_TO_STDOUT
-      value: enabled
-    - name: RAILS_SERVE_STATIC_FILES
-      value: enabled
-    - name: RAILS_MASTER_KEY
-      value: f7b4489992e3ecc9f8f009a892942389
-    - name: SECRET_KEY_BASE
-      value: 310e97425d11656100d39c8dce1c04df
+
