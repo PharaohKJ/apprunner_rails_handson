@@ -5,8 +5,8 @@ build:
     build:
       - sudo yum install -y libyaml-devel postgresql-devel
       - bundle install 
-      - bundle exec rails db:migrate
-      - bundle exec rails assets:precompile
+      - RAILS_ENV=production bundle exec rails db:migrate 
+      - AILS_ENV=production bundle exec rails assets:precompile
   env:
     - name: RAILS_ENV
       value: production
@@ -22,7 +22,7 @@ build:
       value: 310e97425d11656100d39c8dce1c04df
 run: 
   runtime-version: 3.1.4
-  command: bundle exec rails server --binding=0.0.0.0
+  command: AILS_ENV=production bundle exec rails server --binding=0.0.0.0
   network:
     port: 3000
   env:
